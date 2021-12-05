@@ -1,11 +1,36 @@
 # bufalo-tech-task
-## Prueba tecnica para bufalo-tech:
-### Esta prueba está desarrollada en nodejs en la versión 16+
-#### Pasos para correr el proyecto:
-  > Tener nodejs v16+ instalado.
-  > Abrir una terminal.
+## Technical test for buffalo-tech:
+### This test is developed in node js in version 16.
+<p>This test is done in two parts: backend and frontend, for the backend created in node js and the frontend created in react js.</p>
+<p>steps to run the backend: </p>
+
+ ```bash
+   # have node js installed 16+
+   # open a terminal.
   > git clone https://github.com/majimenezaquino/bufalo-tech-task.git
-  > cd bufalo-tech-task.git
- 
-Para correr los tests en nodejs
-> npm run test
+  > cd bufalo-tech-task
+  > cd backend
+  > npm install
+  > npm start
+  ```
+  <p>Run the tests</p>
+  
+ ```bash
+ npm run test
+ ```
+<p>steps to run the frontend: </p>
+
+ ```bash
+   # have node js installed 16+
+   # open a terminal.
+  > git clone https://github.com/majimenezaquino/bufalo-tech-task.git
+  > cd bufalo-tech-task
+  > cd frontend
+  > npm install
+  > npm start
+  ```
+ <p>Run the tests</p>
+  
+ ```bash
+ npm run test
+ ```
