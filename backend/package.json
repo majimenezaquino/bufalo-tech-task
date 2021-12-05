@@ -1,0 +1,17 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "This is a technical test of buld distribution",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/app",
+    "dev": "nodemon src/app"
+  },
+  "author": "majimenezquino",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.4.3",
+    "nodemon": "^2.0.15"
+  }
+}
