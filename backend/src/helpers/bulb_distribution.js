@@ -17,19 +17,29 @@ class BulbDistribution{
     }
     getPosition(rooms){
         //Get all the points with their coordinates
-        this.position =[]
-        for(let indexY in rooms){
-            let arrHorizontal =Array.from(rooms[indexY])
-            for(let indexX in rooms[indexY]){
-                let arrVertical = this.gerVerticalSteet(rooms,indexX)
-                
-                    this.position.push({x:indexX,
-                        y:indexY,countX:this.getSteepNumber(arrHorizontal,indexX)
-                        ,countY:this.getSteepNumber(arrVertical,indexY)})
+        let positions =[]
+        let dataset = rooms.map(a=>Array.from(a))
+        for(let indexY in dataset){
+            let y = parseInt(indexY)
+            let x = 0
+            let positionX =0
+            let positionY =0
+            for(let indexX in dataset[indexY]){
+                x = parseInt(indexX)
+                if(dataset[indexY][indexX]!='0'){
+                    positionX = 0
+                    positionY = 0
+                }else{
+                 let arrVertical = this.gerVerticalSteet(dataset,x)
+                 let arrHorizontal = dataset[indexY]
+                 positionX = this.getSteepNumber(arrHorizontal,x)
+                 positionY = this.getSteepNumber(arrVertical,y)
+                }
+                positions.push({x,y,countX:positionX,countY:positionY})
             }
         }
-       
-        return this.position
+        const l =positions
+        return l
     }
     gerVerticalSteet(room,positX){
         //This method converts the vertical array to horizontal
@@ -51,31 +61,36 @@ class BulbDistribution{
         let arrRight =roomLine.slice(pointX, roomLine.length)
         let countX =this._getCountSteep(arrLeft)
         let countY = this._getCountSteep(arrRight)
-        // console.log("Posicion encontrada",roomLine,countX,countY)
-        return countX + countY
+        let resul =countX + countY
+        return resul
     }
     _getCountSteep(arr){
         //This method receives an array and returns the amount of step that can be given both to the right and to the left.
         let result =0
-        result = (arr||[]).indexOf("1")
-        if(arr.indexOf("1")<0){
-            result = arr.length
+        for(let char of arr){
+            if(char!='0'){
+                return result
+            }
+            result++
         }
+        
         return result
+        
     }
 
     getBestPoint(arr){
         //This method returns the closest point.
         let current= { x: '0', y: '0', countX: 0, countY: 0 }
-        for(let item of this.getPosition(arr)){
-            if (current.countX +current.countY < item.countX +item.countY){
+        const arrarPoint =this.getPosition(arr)
+        for(let item of arrarPoint){
+            if (current.countX + current.countY < item.countX +item.countY){
                 current = item
             }
         }
         return current
     }
     markPoints(arr){
-    let p =this.getBestPoint(arr)
+    const p =this.getBestPoint(arr)
     let linex=Array.from(arr[parseInt(p.y)])
     let liney = this.gerVerticalSteet(arr,p.y)
     let x = parseInt(p.x)
@@ -84,10 +99,12 @@ class BulbDistribution{
     liney =this._updateArray(liney,x,'*')
     arr[y]=linex.join("")
     for(let index in liney){
+        
         let l = Array.from(arr[index])
             l[p.x]=liney[index]
         arr[index] = l.join("")
     }
+    console.log(arr)
     
     
    return arr
@@ -121,7 +138,14 @@ class BulbDistribution{
 
     }
 
-  
+
+  changeCharacterPosition(arr,x,y,char){
+      //This method changes a specific character of the array at the x and y coordinates y
+      let arrX = Array.from(arr[y])
+       arrX[x]=char
+       arr[y]=arrX.join("")
+      return arr
+  }
 
     
 }
