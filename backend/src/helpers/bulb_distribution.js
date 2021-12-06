@@ -3,7 +3,7 @@ class BulbDistribution{
     constructor(rooms){
         this.rooms =rooms
         this.position =[]
-        console.table(rooms)
+        this.barrier='1'
     }
     isValidShape(){
         for(let room of this.rooms){
@@ -104,9 +104,6 @@ class BulbDistribution{
             l[p.x]=liney[index]
         arr[index] = l.join("")
     }
-    console.log(arr)
-    
-    
    return arr
     }
     _updateArray(arr,x,char){
@@ -139,14 +136,47 @@ class BulbDistribution{
     }
 
 
-  changeCharacterPosition(arr,x,y,char){
-      //This method changes a specific character of the array at the x and y coordinates y
-      let arrX = Array.from(arr[y])
-       arrX[x]=char
-       arr[y]=arrX.join("")
-      return arr
-  }
+  changeCharacterPosition(arr,x,y,char,countX=0,countY=0){
+      if(countY>0)countY =countY-1
+    let dataset = arr.map(l=>Array.from(l))
+    let arrayY = dataset.map(p=>p[x])
+    arrayY =this.changeCharacterAt(arrayY,countY,char)
+    //draw barrier 
+    let arrayX = dataset[y]
+    arrayX =this.drawPointsBarrier(arrayX,countX,char,this.barrier)
+    arrayY = this.drawPointsBarrier(arrayY,countY,char,this.barrier)
+    dataset[y]=arrayX
+    //add value y
+    for(let item in arrayY){
+        let line =dataset[item]
+        line[x]=arrayY[item]
+        dataset[item] =line
 
+    }
+    return dataset.map(a=>a.join(""))
+  }
+changeCharacterAt(arr,number,char){
+    //This method change charcter from ziro to number
+    return arr.map((item,index)=>{
+        if(index<=number){
+            return char
+        }
+        return item
+    })
+}
+
+drawPointsBarrier(arr,index,char,barrier){
+    let arr1=arr.slice(0, index).reverse().map((p,i)=>{
+        if(p!=barrier) return char
+        return p
+    }).reverse()
+    let arr2=arr.slice(index, arr.length).map((p,i)=>{
+        if(p!=barrier) return char
+        return p
+    })
+    const resul =arr1.concat(arr2)
+    return resul
+}
     
 }
 module.exports =BulbDistribution
