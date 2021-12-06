@@ -6,30 +6,43 @@ const app =express()
 bd1 = new BulbDistribution(rooms)
 const roomArr =bd1.getRooms()
 let dataset =[]
-
-let contador =0
- const main=(dataset) =>{
-    let point =bd1.getBestPoint(dataset)
-    let arr =bd1.changeCharacterPosition(dataset,point.x,point.y,'*',point.countX ,point.countY)
+let point ={}
+let arr=[]
+let bulbCount =0
+ const main=(data) =>{
+    if(!bd1.isValidShape()){
+       console.error("The form of the dataset is invalid.")
+       return false
+    }
+    point =bd1.getBestPoint(data)
+    arr =bd1.changeCharacterPosition(data,point.x,point.y,'*',point.countX ,point.countY)
      console.table(arr)
      console.log(point)
-     console.log("--------------------------------")
-    
+     bulbCount++
+     console.log(`**************** line ${bulbCount-1} ***********************`)
+     dataset =arr
      if(point.countX + point.countY>0){
-        main(arr)
+       main(arr)
      }
-     contador++
      return arr
 }
-
+console.log("**************** Init ***********************")
+main(roomArr)
+if (bulbCount>0)bulbCount=bulbCount-1
+console.log("bonbillos",bulbCount-1)
 
 
 app.use(cors())
+
 app.get("/datates",(req,res)=>{
-let dataset=main(roomArr)
-console.log("bonbillos",contador)
+   dataset =dataset.map(a=>Array.from(a))
 res.json(dataset)
 })
 
+app.get("/getfiles",(req,res)=>{
+   
+res.json({m:'dd'})
+})
+
 app.listen(3000)
-console.log("Rum")
+

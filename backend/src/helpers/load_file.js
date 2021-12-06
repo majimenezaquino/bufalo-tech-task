@@ -6,4 +6,9 @@ let rooms =[]
 if (data){
     rooms =data.split('\n')
 }
+const listFiles=function(){
+    fs.readdir(filePath, (err, files) => {
+       console.log(filePath+"/",files)
+     });
+ }
 module.exports =rooms

@@ -4,6 +4,7 @@ class BulbDistribution{
         this.rooms =rooms
         this.position =[]
         this.barrier='1'
+        console.table(rooms)
     }
     isValidShape(){
         for(let room of this.rooms){
@@ -30,7 +31,7 @@ class BulbDistribution{
                     positionX = 0
                     positionY = 0
                 }else{
-                 let arrVertical = this.gerVerticalSteet(dataset,x)
+                 let arrVertical = this.gerVerticalSteeps(dataset,x)
                  let arrHorizontal = dataset[indexY]
                  positionX = this.getSteepNumber(arrHorizontal,x)
                  positionY = this.getSteepNumber(arrVertical,y)
@@ -41,7 +42,7 @@ class BulbDistribution{
         const l =positions
         return l
     }
-    gerVerticalSteet(room,positX){
+    gerVerticalSteeps(room,positX){
         //This method converts the vertical array to horizontal
         let data =[]
         for(let steep of room){
@@ -89,44 +90,8 @@ class BulbDistribution{
         }
         return current
     }
-    markPoints(arr){
-    const p =this.getBestPoint(arr)
-    let linex=Array.from(arr[parseInt(p.y)])
-    let liney = this.gerVerticalSteet(arr,p.y)
-    let x = parseInt(p.x)
-    let y = parseInt(p.y)
-    linex =this._updateArray(linex,y,'*')
-    liney =this._updateArray(liney,x,'*')
-    arr[y]=linex.join("")
-    for(let index in liney){
-        
-        let l = Array.from(arr[index])
-            l[p.x]=liney[index]
-        arr[index] = l.join("")
-    }
-   return arr
-    }
-    _updateArray(arr,x,char){
-        
-        //method to change caprater
-        let arrLeft =arr.slice(0, x).reverse()
-        let arrRight =arr.slice(x, arr.length)
-        let arr3 =this.changeCharacter(arrLeft,'1',char)
-        let arr4 =this.changeCharacter(arrRight,'1',char)
-        let a= arr3.reverse().concat(arr4)
-        return a
-    }
-    changeCharacter(arr,charLimit,char){
-        //metodo para cambiar los caprater
-        let resul =arr
-        for( let index in arr){
-            if(arr[index]==charLimit){
-                return resul
-            }
-            resul[index]=char
-        }
-        return resul
-    }
+  
+  
     getSize(arr){
         return {
             x: arr[0].length,
@@ -140,11 +105,11 @@ class BulbDistribution{
       if(countY>0)countY =countY-1
     let dataset = arr.map(l=>Array.from(l))
     let arrayY = dataset.map(p=>p[x])
-    arrayY =this.changeCharacterAt(arrayY,countY,char)
     //draw barrier 
     let arrayX = dataset[y]
-    arrayX =this.drawPointsBarrier(arrayX,countX,char,this.barrier)
-    arrayY = this.drawPointsBarrier(arrayY,countY,char,this.barrier)
+   
+    arrayX =this.drawPointsBarrier(arrayX,x,char,this.barrier)
+    arrayY = this.drawPointsBarrier(arrayY,y,char,this.barrier)
     dataset[y]=arrayX
     //add value y
     for(let item in arrayY){
@@ -155,23 +120,20 @@ class BulbDistribution{
     }
     return dataset.map(a=>a.join(""))
   }
-changeCharacterAt(arr,number,char){
-    //This method change charcter from ziro to number
-    return arr.map((item,index)=>{
-        if(index<=number){
-            return char
-        }
-        return item
-    })
-}
+
 
 drawPointsBarrier(arr,index,char,barrier){
+    let barrier1= false
+    let barrier2= false
     let arr1=arr.slice(0, index).reverse().map((p,i)=>{
-        if(p!=barrier) return char
+        if(p!=barrier && !barrier1) return char
+        barrier1 =true
         return p
     }).reverse()
+    
     let arr2=arr.slice(index, arr.length).map((p,i)=>{
-        if(p!=barrier) return char
+        if(p!=barrier && !barrier2) return char
+        barrier2 =true
         return p
     })
     const resul =arr1.concat(arr2)
