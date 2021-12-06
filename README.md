@@ -1,5 +1,5 @@
 # bufalo-tech-task
-![alt text](http://qnimate.com/wp-content/uploads/2014/03/images2.jpg)
+![alt text](https://github.com/majimenezaquino/bufalo-tech-task/blob/master/frontend/public/logo.png)
 ## Technical test for buffalo-tech:
 ### This test is developed in node js in version 16.
 <p>This test is done in two parts: backend and frontend, for the backend created in node js and the frontend created in react js.</p>
