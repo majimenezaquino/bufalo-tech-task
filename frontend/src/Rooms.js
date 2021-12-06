@@ -1,7 +1,19 @@
 import React from 'react';
 
 import axios from 'axios';
-
+let setColor =(value)=>{
+  console.log("color",value)
+  // if(value=='*') return {backgroundColor:'#ff7'}
+  if(value=='1') return {backgroundColor:'#000'}
+  if(value=='0') return {backgroundColor:'#ff0'}
+}
+const LineComponet =({arr,index}) =>{
+  return ( <div className="line" key={index} >
+          { arr.map((item,key)=>  <div key={item} className="room" style={setColor(item)}>{item}</div>)}
+        </div> )
+    
+  
+}
 export default class Rooms extends React.Component {
   state = {
     persons: []
@@ -18,15 +30,10 @@ export default class Rooms extends React.Component {
 
   render() {
     return (
-      <div>
-        { 
-        this.state.persons.map((value,i)=> {
-          for(let index in value){
-           console.log("is",value[index])
-            return <div key={parseInt(index+i)} className="room">{value[index]}</div>
-          }
-        })}
-      </div>
+      <>
+        { this.state.persons.map((record,index)=>  <LineComponet arr = {record} key={index} />)}
+      </>
     )
   }
 }
+
