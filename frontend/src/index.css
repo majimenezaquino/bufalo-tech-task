@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  background-color: #000;
+}
+
+#root{
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.room{
+  display: flex;
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,6 +1,8 @@
 const rooms =require("./helpers/load_file")
 const BulbDistribution =require("./helpers/bulb_distribution")
-
+const express =require("express")
+const cors = require('cors')
+const app =express()
 bd1 = new BulbDistribution(rooms)
 const roomArr =bd1.getRooms()
 // const {x,y}=bd1.getSize(roomArr)
@@ -37,3 +39,11 @@ console.log(m1)
 // console.log(bd1.getPosition(roomArr))
 // console.log(bd1.getBestPoint([ '0010011', '1101010' ,'1001010','0010011']))
 // console.table(m1)
+app.use(cors())
+app.get("/datates",(req,res)=>{
+let dataset =[['0','0'],['1','0']]
+res.json(dataset)
+})
+
+app.listen(3000)
+console.log("Rum")
