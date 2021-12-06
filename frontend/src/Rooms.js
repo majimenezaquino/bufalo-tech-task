@@ -3,9 +3,10 @@ import React from 'react';
 import axios from 'axios';
 let setColor =(value)=>{
   console.log("color",value)
-  if(value=='*') return {backgroundColor:'#ff0'}
+  if(value=='*') return {backgroundColor:'#ffa'}
   if(value=='1') return {backgroundColor:'#000'}
   if(value=='0') return {backgroundColor:'#ffa'}
+  if(value=='b') return {backgroundColor:'#ff0'}
 }
 const LineComponet =({arr,index}) =>{
   return ( <div className="line" key={index} >

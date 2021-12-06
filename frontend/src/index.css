@@ -1,12 +1,12 @@
 body {
   margin: 0;
-  background-color: #000;
 }
 
 #root{
   margin: auto;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -15,15 +15,18 @@ body {
   width: 100px;
   height: 100px;
   background-color: #fff;
-  margin: 10px;
   justify-content: center;
   align-items: center;
   border: solid 1px #eee;
   color: red;
 }
 .line{
-  width: 100%;
   display: flex;
   flex-wrap: nowrap;
+  margin: auto;
+  border: solid 1px #eee;
 
+}
+.line:first{
+  margin-top: 100;
 }

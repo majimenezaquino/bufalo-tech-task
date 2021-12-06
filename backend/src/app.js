@@ -16,6 +16,10 @@ let bulbCount =0
     }
     point =bd1.getBestPoint(data)
     arr =bd1.changeCharacterPosition(data,point.x,point.y,'*',point.countX ,point.countY)
+    if(point.countX +point.countY){
+      arr =bd1.changeArraryAt(arr,point.x,point.y,'b')
+    }
+    
      console.table(arr)
      console.log(point)
      bulbCount++
@@ -29,7 +33,7 @@ let bulbCount =0
 console.log("**************** Init ***********************")
 main(roomArr)
 if (bulbCount>0)bulbCount=bulbCount-1
-console.log("bonbillos",bulbCount-1)
+console.log("Bulbs",bulbCount-1)
 
 
 app.use(cors())
@@ -39,10 +43,7 @@ app.get("/datates",(req,res)=>{
 res.json(dataset)
 })
 
-app.get("/getfiles",(req,res)=>{
-   
-res.json({m:'dd'})
-})
+
 
 app.listen(3000)
 

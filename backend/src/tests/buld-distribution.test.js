@@ -5,7 +5,7 @@ const BulbDistribution =require("../helpers/bulb_distribution")
 // bDitribution = new BulbDistribution(rooms)
 // console.log("shape",bDitribution.isValidShape())
 
-describe('validate  if the matrix has special characters', () => {
+describe('validate  if the dataset has special characters', () => {
 
     //validate  if the matrix has special characters
     test('should return true', () => {

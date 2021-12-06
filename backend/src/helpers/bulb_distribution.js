@@ -140,5 +140,10 @@ drawPointsBarrier(arr,index,char,barrier){
     return resul
 }
     
+changeArraryAt(arr,x,y,char){
+    let dataset =arr.map(l=>Array.from(l))
+    dataset[y][x]=char
+    return dataset.map(l=>l.join(""))
+}
 }
 module.exports =BulbDistribution
