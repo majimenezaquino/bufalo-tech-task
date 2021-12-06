@@ -41,7 +41,7 @@ console.log(m1)
 // console.table(m1)
 app.use(cors())
 app.get("/datates",(req,res)=>{
-let dataset =[['0','0','0','1'],['0','0','1','1'],['0','0','0','1']]
+let dataset =[['*','0','0','1'],['0','0','1','1'],['0','0','*','1']]
 res.json(dataset)
 })
 
