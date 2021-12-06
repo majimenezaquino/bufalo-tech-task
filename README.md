@@ -24,7 +24,6 @@
  ```bash
    # have node js installed 16+
    # open a terminal.
-  > git clone https://github.com/majimenezaquino/bufalo-tech-task.git
   > cd bufalo-tech-task
   > cd frontend
   > npm install
